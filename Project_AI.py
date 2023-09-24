@@ -7,7 +7,11 @@ import streamlit as st
 import openai
 from gtts import gTTS
 import random
-
+st.set_page_config(
+    page_title="Memories",
+	# Toggle sidebar state between 'expanded' and 'collapsed'.
+    initial_sidebar_state="collapsed",
+)
 def get_answer(question: str) -> str:
     # Set cloudflare clearance cookie and get answer from GPT-4 model
     try:
@@ -87,7 +91,7 @@ def Natural_Voice(hasilgpt):
     
     speak = generate(text=hasilgpt, voice="Nahida",model="eleven_multilingual_v2")
     
-    play(speak)
+    #play(speak)
 
     audio_path = "./Voice_AI/captured_voice"+kodeSuara+".mp3"
     save(speak, audio_path)
