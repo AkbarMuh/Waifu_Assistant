@@ -93,19 +93,29 @@ def Natural_Voice(hasilgpt):
     save(speak, audio_path)
     st.audio(audio_path)
 
-# Add text area for user input and button to get answer
+from streamlit_login_auth_ui.widgets import __login__
 
-question_text_area = st.text_area('🤖 Tanya :', placeholder='Ini tempat buat pertanyaan')
-eleven = st.checkbox("Natural Voice ?")
-if st.button('🧠 Think'):
-    answer = get_answer(question_text_area)
-    #escaped = answer
-    # Display answer
-    st.caption("Answer :")
-    st.markdown(answer)
-    if eleven:
-        Natural_Voice(answer)
-    else:
-        VoiceGTTS(answer)
+__login__obj = __login__(auth_token = "courier_auth_token", 
+                    company_name = "Shims",
+                    width = 200, height = 250, 
+                    logout_button_name = 'Logout', hide_menu_bool = False, 
+                    hide_footer_bool = False, 
+                    lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
+LOGGED_IN = __login__obj.build_login_ui()
 
+if LOGGED_IN:
+
+    st.markdown("Selamat Sudah Login")
+    question_text_area = st.text_area('🤖 Tanya :', placeholder='Ini tempat buat pertanyaan')
+    eleven = st.checkbox("Natural Voice ?")
+    if st.button('🧠 Think'):
+        answer = get_answer(question_text_area)
+        #escaped = answer
+        # Display answer
+        st.caption("Answer :")
+        st.markdown(answer)
+        if eleven:
+            Natural_Voice(answer)
+        else:
+            VoiceGTTS(answer)
