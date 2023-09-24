@@ -7,11 +7,7 @@ import streamlit as st
 import openai
 from gtts import gTTS
 import random
-st.set_page_config(
-    page_title="Memories",
-	# Toggle sidebar state between 'expanded' and 'collapsed'.
-    initial_sidebar_state="collapsed",
-)
+
 def get_answer(question: str) -> str:
     # Set cloudflare clearance cookie and get answer from GPT-4 model
     try:
@@ -44,7 +40,7 @@ def get_answer(question: str) -> str:
 # Set page configuration and add header
 st.set_page_config(
     page_title="Waifu Generatif",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
     page_icon="🧠",
     menu_items={
         'Get Help': 'https://github.com/xtekky/gpt4free/blob/main/README.md',
