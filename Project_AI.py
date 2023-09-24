@@ -11,8 +11,8 @@ import random
 def get_answer(question: str) -> str:
     # Set cloudflare clearance cookie and get answer from GPT-4 model
     try:
-        #openai.api_key = open("key.txt", "r").read().strip("\n")
-        openai.api_key = "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"
+        openai.api_key = open("key.txt", "r").read().strip("\n")
+        #openai.api_key = "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"
         messages = [ {"role": "system", "content": 
                     "Namamu adalah Nahida, perkenalkan dirimu sebelum menjawab pertanyaan. Jawab pertanyaan berikut dengan baik."} ]
         #while True:
