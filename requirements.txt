@@ -42,3 +42,4 @@ streamlit
 elevenlabs==0.2.24
 argon2-cffi
 streamlit-login-auth-ui
+openai
