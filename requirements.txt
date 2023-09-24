@@ -40,3 +40,5 @@ ffmpy==0.3.1
 ffmpeg-python
 streamlit
 elevenlabs==0.2.24
+argon2-cffi
+streamlit-login-auth-ui
