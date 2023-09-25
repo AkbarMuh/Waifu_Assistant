@@ -163,6 +163,6 @@ components.html(
     <div class="sketchfab-embed-wrapper"> 
         <iframe title="Schwi Dola - [No Game No Life:Zero] / VRC Av3.0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d85f440f72ef4cbeaad4a05f2fa3d100/embed?annotation_cycle=5"> 
         </iframe>/div>
-    """
+    """, width=1000, height=1000
 )
     
