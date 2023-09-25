@@ -4,7 +4,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 import streamlit as st
-from gpt4free import you
 import openai
 from gtts import gTTS
 import random
