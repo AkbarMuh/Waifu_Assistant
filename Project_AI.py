@@ -38,7 +38,7 @@ def get_answer(question: str) -> str:
 
 # Set page configuration and add header
 st.set_page_config(
-    page_title="Waifu Generatif",
+    page_title="Make your own Wife",
     initial_sidebar_state="expanded",
     page_icon="🧠",
     menu_items={
