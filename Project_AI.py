@@ -109,32 +109,13 @@ if LOGGED_IN:
     st.markdown("Selamat Sudah Login")
     question_text_area = st.text_area('🤖 Tanya :', placeholder='Ini tempat buat pertanyaan')
     eleven = st.checkbox("Natural Voice ?")
-    if st.button('🧠 Think'):
-        answer = get_answer(question_text_area)
-        #escaped = answer
-        # Display answer
-        st.caption("Answer :")
-        st.markdown(answer)
-        if eleven:
-            Natural_Voice(answer)
-        else:
-            VoiceGTTS(answer)
-    
+
     from audiorecorder import audiorecorder
     import speech_recognition as sr
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.text("")
-    with col2:
-        st.image("Krusty_Towers_019.png",caption="Kami tidak meragukan tamu meskipun pertanyaannya aneh - aneh")
-        gpt = st.checkbox("Dengan AI ?")
-        c=st.container()
-        with c:
-            audio = audiorecorder("Start","Recognizer ...")
-    
-    with col3:
-        st.text("")
+    c=st.container()
+    with c:
+        audio = audiorecorder("Start","Recognizer ...")
     
     if len(audio) > 0:
         wav_file = open("input.mp3", "wb")
@@ -156,11 +137,23 @@ if LOGGED_IN:
             output = output.title()
             st.text(output + " ?")
 
-        #st.write(scrap(output))
-        if gpt:
-            hasil = get_answer(output)
-            st.markdown(hasil)
-            if eleven:
-                Natural_Voice(hasil)
-            else:
-                VoiceGTTS(hasil)
+        
+        hasil = get_answer(output)
+        st.markdown(hasil)
+        if eleven:
+            Natural_Voice(hasil)
+        else:
+            VoiceGTTS(hasil)
+
+    if st.button('🧠 Think'):
+        answer = get_answer(question_text_area)
+        #escaped = answer
+        # Display answer
+        st.caption("Answer :")
+        st.markdown(answer)
+        if eleven:
+            Natural_Voice(answer)
+        else:
+            VoiceGTTS(answer)
+    
+    
