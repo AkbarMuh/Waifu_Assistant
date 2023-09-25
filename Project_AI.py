@@ -4,6 +4,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 import streamlit as st
+from gpt4free import you
 import openai
 from gtts import gTTS
 import random
@@ -12,7 +13,6 @@ def get_answer(question: str) -> str:
     # Set cloudflare clearance cookie and get answer from GPT-4 model
     try:
         openai.api_key = open("key.txt", "r").read().strip("\n")
-        #openai.api_key = "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"
         messages = [ {"role": "system", "content": 
                     "Namamu adalah Nahida, perkenalkan dirimu sebelum menjawab pertanyaan. Jawab pertanyaan berikut dengan baik."} ]
         #while True:
@@ -40,7 +40,7 @@ def get_answer(question: str) -> str:
 # Set page configuration and add header
 st.set_page_config(
     page_title="Waifu Generatif",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
     page_icon="🧠",
     menu_items={
         'Get Help': 'https://github.com/xtekky/gpt4free/blob/main/README.md',
@@ -87,7 +87,7 @@ def Natural_Voice(hasilgpt):
     
     speak = generate(text=hasilgpt, voice="Nahida",model="eleven_multilingual_v2")
     
-    #play(speak)
+    play(speak)
 
     audio_path = "./Voice_AI/captured_voice"+kodeSuara+".mp3"
     save(speak, audio_path)
@@ -119,3 +119,48 @@ if LOGGED_IN:
             Natural_Voice(answer)
         else:
             VoiceGTTS(answer)
+    
+    from audiorecorder import audiorecorder
+    import speech_recognition as sr
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.text("")
+    with col2:
+        st.image("Krusty_Towers_019.png",caption="Kami tidak meragukan tamu meskipun pertanyaannya aneh - aneh")
+        gpt = st.checkbox("Dengan AI ?")
+        c=st.container()
+        with c:
+            audio = audiorecorder("Start","Recognizer ...")
+    
+    with col3:
+        st.text("")
+    
+    if len(audio) > 0:
+        wav_file = open("input.mp3", "wb")
+        wav_file.write(audio.tobytes())
+
+        import time
+        t = time.localtime()
+        waktu = time.strftime("%H_%M_%S", t)
+        current_time = waktu 
+        filesuara = "./suara/"+current_time+".wav"
+        import subprocess
+        subprocess.call(['ffmpeg', '-i', 'input.mp3',
+                        filesuara]) 
+        r = sr.Recognizer()
+        harvard = sr.AudioFile(filesuara)
+        with harvard as source:
+            audio = r.record(source)
+            output = r.recognize_google(audio, language='id')
+            output = output.title()
+            st.text(output + " ?")
+
+        #st.write(scrap(output))
+        if gpt:
+            hasil = get_answer(output)
+            st.markdown(hasil)
+            if eleven:
+                Natural_Voice(hasil)
+            else:
+                VoiceGTTS(hasil)
