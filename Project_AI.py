@@ -124,7 +124,7 @@ if LOGGED_IN:
         t = time.localtime()
         waktu = time.strftime("%H_%M_%S", t)
         current_time = waktu 
-        filesuara = "./suara/"+current_time+".wav"
+        filesuara = "./Voice_AI/"+current_time+".wav"
         import subprocess
         subprocess.call(['ffmpeg', '-i', 'input.mp3',
                         filesuara]) 
